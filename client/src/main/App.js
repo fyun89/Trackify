@@ -1,12 +1,27 @@
-import React from 'react';
-import './App.css';
+import React, {Component} from 'react';
+//import './App.css';
+import CryptoJS from 'crypto-js';
 
-function App() {
-  return (
-    <div className="App">
-      Test
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  componentDidMount() {
+    //console.log('test encode', CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(`${credentials.client_id}:${credentials.client_secret}`)))
+    fetch('http://localhost:3001/getToken')
+    .then(res => res.json())
+    .then(res => {console.log(JSON.stringify(res))})
+  }
+
+  render() {
+    return (
+      <div className="App">
+        Test
+      </div>
+    );
+  }
 }
 
 export default App;
