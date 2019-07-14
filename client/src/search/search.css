@@ -1,4 +1,26 @@
-.btn-option {
-  background-color: green;
+.searchContainer {
+  background-color: black;
+  margin: 0% 5% 0%;
+}
+
+#option {
+  background-color: #1DB953;
+  width: 100%;
+  height: 100%;
+}
+
+#selected {
+  color: #1DB953;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.options {
+  height: 150%;
+}
+
+#searchBtn {
+  background-color: #1DB953;
   width: 100%;
 }

@@ -9,24 +9,29 @@ class SearchContainer extends Component {
     super(props);
     this.state = {
       options: ['All', 'Songs', 'Artists', 'Albums'],
-      selectedOption: 0,
+      selectedOption: 'All',
       page: 1,
     };
+    this.changeOption = this.changeOption.bind(this);
   }
 
   changeOption(n) {
     //this.setState({selectedOption: n});
     const target = n.target.value;
-    if (target) console.log('change options', n.target.value)
+    if (target) {
+      console.log('change options', target);
+      this.setState({selectedOption: target})
+    }
   }
 
   render() {
     const changeOption = this.changeOption;
     const options = this.state.options;
+    const selectedOption = this.state.selectedOption;
     return (
-      <div>
+      <div className="searchContainer">
         <SearchBar />
-        <SearchOptions changeOptions={changeOption} options={options}/>
+        <SearchOptions selectedOption={selectedOption} changeOptions={changeOption} options={options}/>
         <ResultsContainer />
       </div>
     );
