@@ -10,7 +10,6 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="App">
-        SEARCH BAR
         <Form>
           <Row>
             <Col sm="10">
@@ -19,7 +18,7 @@ class SearchBar extends Component {
               </Form.Group>
             </Col>
             <Col sm = "2">
-              <Button variant="primary" type="submit">
+              <Button variant="success" id="searchBtn" type="submit">
                 Search
               </Button>
             </Col>
