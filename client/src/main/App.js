@@ -9,12 +9,12 @@ class App extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    //console.log('test encode', CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(`${credentials.client_id}:${credentials.client_secret}`)))
-    fetch('http://localhost:3001/getToken')
-    .then(res => res.json())
-    .then(res => {console.log(JSON.stringify(res))})
-  }
+  // componentDidMount() {
+  //   //console.log('test encode', CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(`${credentials.client_id}:${credentials.client_secret}`)))
+  //   fetch('http://localhost:3001/getToken')
+  //   .then(res => res.json())
+  //   .then(res => {console.log(JSON.stringify(res))})
+  // }
 
   render() {
     return (

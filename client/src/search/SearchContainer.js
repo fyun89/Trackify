@@ -13,11 +13,21 @@ class SearchContainer extends Component {
       page: 1,
     };
     this.changeOption = this.changeOption.bind(this);
+    this.query = this.query.bind(this);
   }
 
-  changeOption(n) {
-    //this.setState({selectedOption: n});
-    const target = n.target.value;
+  query(e) {
+    fetch(`http://localhost:3001/getToken?query=${e}`)
+    .then(res => res.json())
+    .then(res => {
+      console.log('tracks', res.tracks.items)
+      console.log('artist', res.artists.items)
+      })
+    console.log('query', e)
+  }
+
+  changeOption(e) {
+    const target = e.target.value;
     if (target) {
       console.log('change options', target);
       this.setState({selectedOption: target})
@@ -28,9 +38,10 @@ class SearchContainer extends Component {
     const changeOption = this.changeOption;
     const options = this.state.options;
     const selectedOption = this.state.selectedOption;
+    const query = this.query;
     return (
       <div className="searchContainer">
-        <SearchBar />
+        <SearchBar query={query}/>
         <SearchOptions selectedOption={selectedOption} changeOptions={changeOption} options={options}/>
         <ResultsContainer />
       </div>
