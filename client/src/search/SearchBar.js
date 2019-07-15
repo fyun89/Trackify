@@ -22,6 +22,7 @@ class SearchBar extends Component {
   }
 
   render() {
+    // input is sanitized by default by React
     return (
       <div className="App">
         <Form onSubmit={(e) => this.handleSubmit(e)}>
