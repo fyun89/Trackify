@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Col } from 'react-bootstrap';
 
 function ResultDetail(props) {
+  console.log('at result detail', props.data)
   return (
-    <Col sm="12" onClick={() => props.handleClick()}>
-      A Result
+    <Col sm="6" onClick={(e) => props.handleClick(e)}>
+      <div>
+        DETAIL
+      </div>
     </Col>
   );
 }

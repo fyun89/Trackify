@@ -1,0 +1,17 @@
+#result {
+  text-align: start;
+  margin: 2% 0% 2%;
+  border-left: solid;
+  border-top: solid;
+  border-color: #1DB953;
+  border-width: 5px;
+  padding: 5px;
+}
+#info-basic {
+  margin: 0% 2% 0%;
+  position: relative;
+  display: inline-block;
+}
+#result:hover {
+  border-color: white;
+}

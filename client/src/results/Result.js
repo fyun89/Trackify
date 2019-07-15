@@ -11,7 +11,8 @@ class Result extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault()
     const isClicked = this.state.clicked;
     if (isClicked) {
       this.setState({clicked: false});
@@ -23,17 +24,25 @@ class Result extends Component {
   render(){
     const handleClick = this.handleClick;
     const isClicked = this.state.clicked;
-    if (isClicked) {
-      return <ResultDetail handleClick={handleClick}/>
-    } else {
+    const data = this.props.data;
+    const option = this.props.option;
+    // if (isClicked) {
+    //   return <ResultDetail data={data} handleClick={handleClick}/>
+    // } else {
       return (
         <Col sm="6">
-          <div onClick={() => handleClick()}>
-            A Result
+          <div onClick={(e) => handleClick(e)} id="result">
+            <img src={data.album.images[2].url} alt={`album img ${data.name}`}></img>
+            <div id="info-basic">
+              {data.name}
+              <p>TEST</p>
+            </div>
+            {isClicked ? <ResultDetail data={data} handleClick={handleClick}/> : null}
+            
           </div>
         </Col>
       );
-    }
+    // }
   }
 }
 

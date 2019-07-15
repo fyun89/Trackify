@@ -20,7 +20,7 @@ class SearchOptions extends Component {
               <Col sm="3" key={`id_${elem}`}>
                 <Button variant="success" id="selected" value={elem} onClick={(e) => changeOptions(e)}>{elem}</Button>
               </Col>
-            )
+            );
           } else {
             return (
               <Col sm="3" key={`id_${elem}`}>

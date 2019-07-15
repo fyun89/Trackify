@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="title">
-          Trackify
+          &lt;Trackify&gt;
         </h1>
         <SearchContainer />
       </div>

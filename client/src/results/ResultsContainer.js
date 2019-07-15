@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Row } from 'react-bootstrap'
 import Result from './Result'
+import './results.css'
 
 class ResultsContainer extends Component {
   constructor(props) {
@@ -16,25 +17,27 @@ class ResultsContainer extends Component {
     const selectedData = data[mapOptions[selectedOption]];
     return (selectedOption === 'Top Results') ? (
         <div>
+          <br></br>
           {options.map(elem => {
+            // Top Results option (default) shows top 6 results for other options
             return (
               <div>
                 <h2>{elem}</h2>            
                 <Row>
-                {
-                  data[mapOptions[elem]].slice(0,6).map(elem => <Result data={elem}/>)
-                }
+                {data[mapOptions[elem]].slice(0,6).map(e => <Result option={mapOptions[elem]} data={e}/>)}
                 </Row>
               </div>
-            )
+            );
           })}
         </div>
      ) : (
       <div>
-        <h2>Results:</h2>
-        {
+        <br></br>
+        <Row>
+        { // Individual search options
           selectedData.map(elem => <Result data={elem} />)
         }
+        </Row>
       </div>
      )
   }

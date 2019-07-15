@@ -52,6 +52,7 @@ class SearchContainer extends Component {
       <div className="searchContainer">
         <SearchBar query={query}/>
         <SearchOptions selectedOption={selectedOption} changeOptions={changeOption} options={options}/>
+        <br></br>
         {!data ? <h1>Search to see your results here</h1> 
         : <ResultsContainer options={options} selectedOption={selectedOption} data={data}/>}
       </div>
