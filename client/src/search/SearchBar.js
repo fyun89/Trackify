@@ -18,7 +18,7 @@ class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.query(this.state.userQuery)
+    this.props.handleQuery(this.state.userQuery)
   }
 
   render() {

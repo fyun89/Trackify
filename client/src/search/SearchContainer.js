@@ -11,24 +11,36 @@ class SearchContainer extends Component {
       options: ['Top Results', 'Songs', 'Artists', 'Albums'],
       selectedOption: 'Top Results',
       page: 1,
+      query: '',
       data: undefined,
+      resultCount: {},
     };
     this.changeOption = this.changeOption.bind(this);
-    this.query = this.query.bind(this);
+    this.handleQuery = this.handleQuery.bind(this);
   }
 
-  query(e) {
+  handleQuery(e) {
     fetch(`http://localhost:3001/getToken?query=${e}`)
     .then(res => res.json())
     .then(res => {
+      console.log('all-->', res)
       console.log('tracks', res.tracks.items)
       console.log('artist', res.artists.items)
       console.log('albums', res.albums.items)
-      this.setState({data: {
+      this.setState({
+        data: {
         tracks: res.tracks.items,
         artists: res.artists.items,
         albums: res.albums.items,
-      }})
+        },
+        resultCount: {
+          all: res.tracks.total + res.artists.total + res.albums.total,
+          tracks: res.tracks.total,
+          artists: res.artists.total,
+          albums: res.albums.total,
+        },
+        query: e,
+      })
 
       })
     console.log('query', e)
@@ -44,17 +56,20 @@ class SearchContainer extends Component {
 
   render() {
     const changeOption = this.changeOption;
-    const options = this.state.options;
+    // const options = this.state.options;
+    // const query = this.state.query;
+    // const data = this.state.data;
+    const { options, query, data, resultCount } = this.state
     const selectedOption = this.state.selectedOption;
-    const query = this.query;
-    const data = this.state.data;
+    const handleQuery = this.handleQuery;
+
     return (
       <div className="searchContainer">
-        <SearchBar query={query}/>
-        <SearchOptions selectedOption={selectedOption} changeOptions={changeOption} options={options}/>
+        <SearchBar handleQuery={handleQuery}/>
+        <SearchOptions resultCount={resultCount} selectedOption={selectedOption} changeOptions={changeOption} options={options}/>
         <br></br>
         {!data ? <h1>Search to see your results here</h1> 
-        : <ResultsContainer options={options} selectedOption={selectedOption} data={data}/>}
+        : <ResultsContainer query={query} options={options} selectedOption={selectedOption} data={data}/>}
       </div>
     );
   }

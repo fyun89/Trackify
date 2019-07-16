@@ -1,4 +1,5 @@
 #result {
+  background-color: black;
   text-align: start;
   margin: 2% 0% 2%;
   border-left: solid;
@@ -6,12 +7,23 @@
   border-color: #1DB953;
   border-width: 5px;
   padding: 5px;
+  height: 100px;
 }
 #info-basic {
   margin: 0% 2% 0%;
-  position: relative;
+  position: absolute;
   display: inline-block;
 }
 #result:hover {
   border-color: white;
+  height: 200px;
+}
+
+#resultDetail {
+  margin-top: 15%;
+}
+
+#albumArt {
+  width: 80px;
+  height: 80px;
 }
