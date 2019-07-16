@@ -6,7 +6,7 @@ class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false,
+      mouseOvered: false,
     };
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.combineDataToStr = this.combineDataToStr.bind(this);
@@ -18,7 +18,6 @@ class Result extends Component {
 
   combineDataToStr(arr) {
     let str = arr.reduce((acc, elem, i) => {
-      console.log('elem in reduce', elem)
         return !i ? (acc += `${elem.name || elem}`) : (acc += `, ${elem.name || elem}`); //genre: elem, artist: elem.name
         }, '');
     return str;
@@ -51,7 +50,7 @@ class Result extends Component {
       case 'artists': output = this.combineDataToStr(data.artists).slice(0, 30); break; // limited to 30 char
       case 'album': output = data.album.name; break;
       case 'duration': output = `${this.handleTimeConversion(data.duration_ms)}`; break;
-      case 'link': output = <a href={`${data.external_urls.spotify}`} target="_blank">Click to Visit</a>; break;
+      case 'link': output = <a href={`${data.external_urls.spotify}`} target="_blank" rel="noopener noreferrer">Click to Visit</a>; break;
       case "genres": output = this.combineDataToStr(data.genres); break;
       case "followerCount": output = data.followers.total; break;
       case "releaseDate": output = data.release_date; break;
@@ -63,8 +62,8 @@ class Result extends Component {
 
   handleMouseOver(e) {
     e.preventDefault();
-    const isClicked = this.state.clicked;
-    isClicked ? this.setState({clicked: false}) : this.setState({clicked: true});
+    const isMouseOvered = this.state.mouseOvered;
+    isMouseOvered ? this.setState({mouseOvered: false}) : this.setState({mouseOvered: true});
   }
 
   handleDynamicResults(e) {
@@ -85,12 +84,11 @@ class Result extends Component {
   render() {
     const handleMouseOver = this.handleMouseOver;
     const handleData = this.handleData;
-    const isClicked = this.state.clicked;
-    const { data, selectedOption } = this.props;
+    const isMouseOvered = this.state.mouseOvered;
+    const { data } = this.props;
     const handleDynamicResults = this.handleDynamicResults;
     const handleLabelConversion = this.handleLabelConversion;
-    console.log('data at results', data)
-    console.log('selectedOption', selectedOption)
+    //console.log('data at results', JSON.stringify(data))
       return (
         <Col sm="6">
           <div onMouseEnter={(e) => handleMouseOver(e)} onMouseLeave={(e) => handleMouseOver(e)} id="result">
@@ -98,12 +96,12 @@ class Result extends Component {
             <div id="info-basic">
               {/* slice(0,3) represents basic info; indexes after are shown in detail */}
               {handleDynamicResults(data).slice(0, 3).map(e => (
-                <div>
+                <div key={'key_' + e}>
                 {`${handleLabelConversion(e)}: `}{handleData(data, e)}
                 </div>
               ))}
             </div>
-            {isClicked ? <ResultDetail handleDynamicResults={handleDynamicResults} handleLabelConversion={handleLabelConversion} handleData={handleData} data={data}/> : null}
+            {isMouseOvered ? <ResultDetail handleDynamicResults={handleDynamicResults} handleLabelConversion={handleLabelConversion} handleData={handleData} data={data}/> : null}
           </div>
         </Col>
       );

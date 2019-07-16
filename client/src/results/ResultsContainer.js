@@ -10,22 +10,20 @@ class ResultsContainer extends Component {
   }
 
   render() {
-    const selectedOption = this.props.selectedOption; //Top Results, Songs, Artists, Albums
+    const { selectedOption, data, query } = this.props;
     const mapOptions = {Songs: "tracks", Artists: "artists", Albums: "albums"};
     const options = this.props.options.slice(1);
-    const data = this.props.data; //{tracks, artists, albums} ea. array
     const selectedData = data[mapOptions[selectedOption]];
-    const query = this.props.query;
     return (selectedOption === 'Top Results') ? (
         <div>
           <br></br>
           {options.map(elem => {
             // Top Results option (default) shows top 6 results for other options
             return (
-              <div>
+              <div key={'resultContainer_key_' + elem}>
                 <h2>{elem}</h2>            
                 <Row>
-                {data[mapOptions[elem]].slice(0,6).map(e => <Result query={query} option={mapOptions[elem]} data={e}/>)}
+                {data[mapOptions[elem]].slice(0,6).map((e, i) => <Result key={'result_key_'+ i + elem} query={query} option={mapOptions[elem]} data={e}/>)}
                 </Row>
               </div>
             );
@@ -35,13 +33,9 @@ class ResultsContainer extends Component {
       <div>
         <br></br>
         <Row>
-        { // Individual search options
-          // Structure of data to send to each result section (basic: 0-3, 4+: details)
-          // Songs: 0. image, 1.name, 2. Artists, 3. Album, 4. Duration, 5. Link
-          // Artists: 0. image, 1. name, 2. genre, 3. countFollowers, 4. Link
-          // Album: 0. image, 1. name, 2. Artists, 3. releaseDate 4. trackCount, 5. Link
-          selectedData.map(elem => {
-            return <Result selectedOption={selectedOption} data={elem}/>
+        {
+          selectedData.map((elem, i) => {
+            return <Result key={'selectedData_key_' + i} selectedOption={selectedOption} data={elem}/>
           })
         }
         </Row>

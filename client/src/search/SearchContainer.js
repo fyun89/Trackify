@@ -23,10 +23,7 @@ class SearchContainer extends Component {
     fetch(`http://localhost:3001/getToken?query=${e}`)
     .then(res => res.json())
     .then(res => {
-      console.log('all-->', res)
-      console.log('tracks', res.tracks.items)
-      console.log('artist', res.artists.items)
-      console.log('albums', res.albums.items)
+      console.log('tracks, artist, album', res.tracks.items, res.artists.items, res.albums.items)
       this.setState({
         data: {
         tracks: res.tracks.items,
@@ -43,26 +40,21 @@ class SearchContainer extends Component {
       })
 
       })
-    console.log('query', e)
   }
 
   changeOption(e) {
     const target = e.target.value;
     if (target) {
-      console.log('change options', target);
+      // console.log('change options', target);
       this.setState({selectedOption: target})
     }
   }
 
   render() {
     const changeOption = this.changeOption;
-    // const options = this.state.options;
-    // const query = this.state.query;
-    // const data = this.state.data;
     const { options, query, data, resultCount } = this.state
     const selectedOption = this.state.selectedOption;
     const handleQuery = this.handleQuery;
-
     return (
       <div className="searchContainer">
         <SearchBar handleQuery={handleQuery}/>

@@ -12,7 +12,7 @@ class SearchBar extends Component {
 
   handleChange(e) {
     e.preventDefault();
-    console.log('query type: ', e.target.value)
+    //console.log('query type: ', e.target.value)
     this.setState({userQuery: e.target.value})
   }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 
 class SearchOptions extends Component {
   constructor(props) {
@@ -25,12 +25,8 @@ class SearchOptions extends Component {
   }
 
   render() {
-    // const options = this.props.options;
-    // const changeOptions = this.props.changeOptions;
-    // const selectedOption = this.props.selectedOption;
     const { options, changeOptions, selectedOption, resultCount } = this.props;
     const handleDataConv = this.handleDataConv;
-    console.log('result count', resultCount)
     return (
       <div className="options" >
         <Row >
